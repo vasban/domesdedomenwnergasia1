@@ -25,10 +25,31 @@ public class IntQueueImp {
 		
 	}
 	public int get() throws NoSuchElementException{
+		if(isEmpty()) throw new NoSuchElementException(name);
+		
 		int value = firstNode.data;
-		Node<Integer> t = firstNode.nextnode;
-		firstNode = t;
+		
+		if(firstNode == lastNode) firstNode=lastNode=null;
+		else firstNode = firstNode.nextnode;
 		return value;
+	}
+	public int peek() throws NoSuchElementException{
+		if(isEmpty()) throw new NoSuchElementException(name);
+		return firstNode.data;
+	}
+	public void print() {
+		if(isEmpty()) {
+			System.out.printf("Empty %s\n", name);
+			return;
+		}
+		System.out.printf("Empty %s\n", name);
+		Node<Integer> current = firstNode;
+		
+		while (current!=null) {
+			System.out.printf( "%s ", current.data );
+			current = current.nextnode;
+		}
+		System.out.println( "\n" );
 	}
 
 }
